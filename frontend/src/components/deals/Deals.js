@@ -24,6 +24,29 @@ class Deals extends React.Component {
   }
 
   render() {
+    const { deals } = this.state;
+
+    if (!deals) {
+      return (
+        <div className="App">
+          <header className="App-header">
+            <h1>No deals available</h1>
+          </header>
+        </div>
+      );
+    }
+
+    const dealLines = deals.split('\n');
+
+    const tableRows = dealLines.map((line, index) => (
+      <tr key={index}>
+        <td>{index + 1}</td>
+        <td>{line}</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+    ));
+
     return (
       <div className="App">
         <header className="App-header">
@@ -38,12 +61,7 @@ class Deals extends React.Component {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
+              {tableRows}
             </tbody>
           </Table>
         </header>
