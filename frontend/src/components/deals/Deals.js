@@ -12,7 +12,8 @@ class Deals extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://raw.githubusercontent.com/haha150/deals/main/deals.txt")
+    const ms = Date.now();
+    fetch("https://raw.githubusercontent.com/haha150/deals/main/deals.txt"+"?t="+ms)
       .then(res => res.text())
       .then(
         (result) => {
@@ -38,14 +39,15 @@ class Deals extends React.Component {
 
     const dealLines = deals.split('\n');
 
-    const tableRows = dealLines.map((line, index) => (
-      <tr key={index}>
-        <td>{index + 1}</td>
-        <td>{line}</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-    ));
+    const tableRows = dealLines.map((line, index) => {
+      const lineParts = line.split(',');
+    
+      const cells = lineParts.map((cell, cellIndex) => (
+        <td key={cellIndex}>{cell}</td>
+      ));
+    
+      return <tr key={index}>{cells}</tr>;
+    });
 
     return (
       <div className="App">
