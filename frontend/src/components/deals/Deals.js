@@ -53,6 +53,7 @@ class Deals extends React.Component {
       <div className="App">
         <header className="App-header">
           <h1>Deals</h1>
+          <p>For each product sold, the author may earn a small amount of profit.</p>
           <Table striped bordered hover variant="dark">
             <thead>
               <tr>
